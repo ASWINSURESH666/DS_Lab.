@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-void selectionsort(int arr[], int n){
+void selectionSort(int arr[], int n){
     for (int i=0;i<n;i++){
         int minIndex=1;
         for (int i=0;i<n;i++){
