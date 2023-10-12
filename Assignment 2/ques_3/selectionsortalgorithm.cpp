@@ -1,77 +1,38 @@
-#include <iostream>
-#include <vector>
-
+#include<iostream>
 using namespace std;
 
-void merge(vector<double>& arr, int left, int middle, int right) {
-    int n1 = middle - left + 1;
-    int n2 = right - middle;
-
-    vector<double> leftArray(n1);
-    vector<double> rightArray(n2);
-
-    for (int i = 0; i < n1; i++) {
-        leftArray[i] = arr[left + i];
-    }
-
-    for (int j = 0; j < n2; j++) {
-        rightArray[j] = arr[middle + 1 + j];
-    }
-
-    int i = 0, j = 0, k = left;
-
-    while (i < n1 && j < n2) {
-        if (leftArray[i] <= rightArray[j]) {
-            arr[k] = leftArray[i];
-            i++;
-        } else {
-            arr[k] = rightArray[j];
-            j++;
+void selectionsort(int arr[], int n){
+    for (int i=0;i<n;i++){
+        int minIndex=1;
+        for (int i=0;i<n;i++){
+            if (arr[j];<arr[minIndex]){
+                minIndex=j;
+            }
         }
-        k++;
-    }
-
-    while (i < n1) {
-        arr[k] = leftArray[i];
-        i++;
-        k++;
-    }
-
-    while (j < n2) {
-        arr[k] = rightArray[j];
-        j++;
-        k++;
+        if (minIndex != 1){
+            swap(arr[i],arr[minIndex]);
+        }
     }
 }
 
-void mergeSort(vector<double>& arr, int left, int right) {
-    if (left < right) {
-        int middle = left + (right - left) / 2;
-
-        mergeSort(arr, left, middle);
-        mergeSort(arr, middle + 1, right);
-
-        merge(arr, left, middle, right);
-    }
-}
-
-int main() {
+int main(){
     int n;
-    cin >> n;
+    cout<<"Enter the number of elements: ";
+    cin>>n;
 
-    vector<double> arr(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+    int arr[n];
+    cout<<"Enter "<<n<<" elements: ";
+    for (int i=0;i<n;i++){
+        cin>>arr[i];
     }
+    cout<<"Original Array: ";
+    for (int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
 
-    mergeSort(arr, 0, n - 1);
-
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
+    selectionSort(arr ,n);
+    cout<<"Sorted Array: ";
+    for (int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
     }
-
-    cout << endl;
-
     return 0;
 }
